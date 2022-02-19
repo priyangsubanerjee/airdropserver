@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 5588
-const server = require('http').createServer(app);
+const server = require('https').createServer(app);
 const path = require('path')
 var siofu = require("socketio-file-upload");
 const cors = require('cors')
