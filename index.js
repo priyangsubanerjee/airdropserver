@@ -78,7 +78,7 @@ io.on('connection', (socket) => {
 
         users.push(n_user)
         
-        socket.emit('you-have-joined-room', {
+        io.to(socket.id).emit('you-have-joined-room', {
 
             message: `You have joined the room.`,
             id: socket.id,
