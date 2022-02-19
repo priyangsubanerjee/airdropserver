@@ -25,6 +25,11 @@ app.use(siofu.router)
 
 app.get('/main/delete', (req, res) => {
 
+    const fs = require('fs');
+    if (fs.existsSync("./public/uploads/")){
+        fs.rmSync('./public/uploads/', { recursive: true, force: true });
+    }
+
     users = [];
     res.json({
 
