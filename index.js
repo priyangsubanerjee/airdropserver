@@ -4,6 +4,7 @@ const port = process.env.PORT || 5588
 const server = require('http').createServer(app);
 const path = require('path')
 var siofu = require("socketio-file-upload");
+const cors = require('cors')
 const io = require('socket.io')(server, {
 
     cors: {
@@ -20,6 +21,8 @@ const hostdir = process.env.NODE_ENV === 'production' ? 'https://airdropserver.v
 
 app.use(express.static(path.join(__dirname, './public')))
 app.use(siofu.router)
+app.use(cors())
+
 
 io.on('connection', (socket) => {
 
