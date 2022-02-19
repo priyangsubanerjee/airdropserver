@@ -19,9 +19,9 @@ const users = []
 const hostdir = process.env.NODE_ENV === 'production' ? 'https://airdropserver.vercel.app/' : 'http://localhost:5588/'
 
 
+app.use(cors());
 app.use(express.static(path.join(__dirname, './public')))
 app.use(siofu.router)
-app.use(cors())
 
 
 io.on('connection', (socket) => {
