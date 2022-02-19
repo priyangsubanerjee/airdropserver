@@ -16,7 +16,7 @@ const io = require('socket.io')(server,{
 
 
 const users = []
-const hostdir = process.env.NODE_ENV === 'production' ? 'https://airdropserver.vercel.app/' : 'http://localhost:5588/'
+const hostdir = process.env.NODE_ENV === 'production' ? 'https://murmuring-hollows-65325.herokuapp.com/' : 'http://localhost:5588/'
 
 
 app.use(cors());
