@@ -88,7 +88,7 @@ io.on('connection', (socket) => {
             users
         }) 
 
-        socket.broadcast.to(data.room).emit('joined-room', {
+        io.to(data.room).emit('joined-room', {
 
             message: `${data.name} has joined the room.`,
             users
@@ -102,7 +102,7 @@ io.on('connection', (socket) => {
 
     socket.on('send-message', (data) => {
 
-        socket.to(data.to_id).emit('receive-message', {
+        io.to(data.to_id).emit('receive-message', {
 
             data
         })
