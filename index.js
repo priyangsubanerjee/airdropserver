@@ -16,13 +16,22 @@ const io = require('socket.io')(server,{
 
 
 const users = []
-const hostdir = process.env.NODE_ENV === 'production' ? 'https://murmuring-hollows-65325.herokuapp.com/' : 'http://localhost:5588/'
+const hostdir = process.env.NODE_ENV === 'production' ? 'https://murmuring-hollows-65325.herokuapp.com' : 'http://localhost:5588'
 
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, './public')))
 app.use(siofu.router)
 
+app.get('/main/delete', (req, res) => {
+
+    users = [];
+    res.json({
+
+        status: 'success',
+        users: users
+    })
+})
 
 io.on('connection', (socket) => {
 
@@ -58,6 +67,32 @@ io.on('connection', (socket) => {
         }
         socket.to(props.toUser.id).emit('file-recv', fileProp);
         // send file to client
+    });
+
+
+    uploader.on("error", function(event){
+
+        const user = users.find(user => user.id === socket.id)
+
+        const fs = require('fs');
+        if (fs.existsSync(dir)){
+            fs.rmSync('./public/uploads/'+ socket.id, { recursive: true, force: true });
+        }
+        
+
+        if (user) {
+
+            const index = users.indexOf(user)
+            users.splice(index, 1)
+
+            const usersinroom = users.filter(i => user.room === i.room)
+
+            io.to(user.room).emit('joined-room', {
+
+                message: `${user.name} has left the room.`,
+                users: usersinroom
+            }) 
+        }
     });
 
 
