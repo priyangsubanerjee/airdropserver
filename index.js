@@ -5,7 +5,10 @@ const server = require('http').createServer(app);
 const path = require('path')
 var siofu = require("socketio-file-upload");
 const cors = require('cors')
-const io = require('socket.io')(server);
+const io = require('socket.io')(server,{
+
+    transports: ['websocket', 'xhr-polling']
+});
 
 
 const users = []
