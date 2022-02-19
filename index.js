@@ -8,7 +8,7 @@ const cors = require('cors')
 const io = require('socket.io')(server, {
 
     cors: {
-        origins: "*",
+        origins: ["https://airdropio.vercel.app"],
         methods: ["GET", "POST"]
     }
 
