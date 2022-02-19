@@ -68,8 +68,6 @@ io.on('connection', (socket) => {
 
         socket.join(data.room)
 
-        const usersInRoom = users.filter(user => user.room === data.room)
-
         const n_user = {
 
             room : data.room,
@@ -80,20 +78,22 @@ io.on('connection', (socket) => {
 
         users.push(n_user)
         
-        io.to(socket.id).emit('you-have-joined-room', {
+        const usersinroom = users.filter(user => user.room === data.room)
+
+        socket.emit('you-have-joined-room', {
 
             message: `You have joined the room.`,
             id: socket.id,
             name: data.name,
             image: data.image,
             room: data.room,
-            users: usersInRoom
+            users: usersinroom
         }) 
 
-        io.to(data.room).emit('joined-room', {
+        socket.broadcast.to(data.room).emit('joined-room', {
 
             message: `${data.name} has joined the room.`,
-            users: usersInRoom,
+            users: usersinroom,
         })
     })
 
@@ -104,7 +104,7 @@ io.on('connection', (socket) => {
 
     socket.on('send-message', (data) => {
 
-        io.to(data.to_id).emit('receive-message', {
+        socket.to(data.to_id).emit('receive-message', {
 
             data
         })
@@ -132,10 +132,12 @@ io.on('connection', (socket) => {
             const index = users.indexOf(user)
             users.splice(index, 1)
 
+            const usersinroom = users.filter(i => user.room === i.room)
+
             io.to(user.room).emit('joined-room', {
 
                 message: `${user.name} has left the room.`,
-                users
+                users: usersinroom
             }) 
         }
     })
