@@ -5,14 +5,7 @@ const server = require('http').createServer(app);
 const path = require('path')
 var siofu = require("socketio-file-upload");
 const cors = require('cors')
-const io = require('socket.io')(server, {
-    cors: {
-        origin: "http://localhost:3001",
-        methods: ["GET", "POST"],
-        allowedHeaders: ["Content-Type", "Authorization"],
-        credentials: true
-    }
-});
+const io = require('socket.io')(server);
 
 
 const users = []
