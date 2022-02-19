@@ -15,7 +15,7 @@ const io = require('socket.io')(server, {
 
 
 const users = []
-const hostdir = process.env.NODE_ENV === 'production' ? 'https://socketserver.vercel.app/' : 'http://localhost:5588/'
+const hostdir = process.env.NODE_ENV === 'production' ? 'https://airdropserver.vercel.app/' : 'http://localhost:5588/'
 
 
 app.use(express.static(path.join(__dirname, './public')))
