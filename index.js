@@ -15,7 +15,7 @@ const io = require('socket.io')(server,{
 });
 
 
-const users = []
+let users = []
 const hostdir = process.env.NODE_ENV === 'production' ? 'https://murmuring-hollows-65325.herokuapp.com' : 'http://localhost:5588'
 
 
