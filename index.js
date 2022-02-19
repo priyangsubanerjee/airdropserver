@@ -7,10 +7,9 @@ var siofu = require("socketio-file-upload");
 const cors = require('cors')
 const io = require('socket.io')(server, {
 
-    cors: {
-        origins: ["http://192.168.1.34:3001", "https://airdropio.vercel.app/"],
-        methods: ["GET", "POST"]
-    }
+    
+    cors: true,
+    origins: ["http://192.168.1.34:*", "https://airdropio.vercel.app:*"],
 
 })
 
