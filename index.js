@@ -7,7 +7,11 @@ var siofu = require("socketio-file-upload");
 const cors = require('cors')
 const io = require('socket.io')(server,{
 
-    transports: ['websocket', 'xhr-polling']
+    cors: {
+        origin: 'http://localhost:3001',
+        methods: 'GET,PUT,POST,DELETE,OPTIONS'.split(','),
+        credentials: true
+    }
 });
 
 
