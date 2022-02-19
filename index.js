@@ -68,6 +68,8 @@ io.on('connection', (socket) => {
 
         socket.join(data.room)
 
+        const usersInRoom = users.filter(user => user.room === data.room)
+
         const n_user = {
 
             room : data.room,
@@ -85,13 +87,13 @@ io.on('connection', (socket) => {
             name: data.name,
             image: data.image,
             room: data.room,
-            users
+            users: usersInRoom
         }) 
 
         io.to(data.room).emit('joined-room', {
 
             message: `${data.name} has joined the room.`,
-            users
+            users: usersInRoom,
         })
     })
 
