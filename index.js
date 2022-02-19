@@ -7,7 +7,7 @@ var siofu = require("socketio-file-upload");
 const cors = require('cors')
 const io = require('socket.io')(server, {
     cors: {
-        origin: "http://192.168.1.34:3001",
+        origin: "*",
         methods: ["GET", "POST"]
     }
 });
