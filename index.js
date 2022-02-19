@@ -1,13 +1,13 @@
 const express = require('express')
 const app = express()
-const port = 5588
+const port = process.env.PORT || 5588
 const server = require('http').createServer(app);
 const path = require('path')
 var siofu = require("socketio-file-upload");
 const cors = require('cors')
 const io = require('socket.io')(server, {
     cors: {
-        origin: "http://localhost:3001",
+        origin: "192.168.1.34:5588",
         methods: ["GET", "POST"]
     }
 });
