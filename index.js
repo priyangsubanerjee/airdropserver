@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = process.env.PORT || 5588
+const port = process.env.PORT || 5589
 const server = require('http').createServer(app);
 const path = require('path')
 var siofu = require("socketio-file-upload");
@@ -16,7 +16,7 @@ const io = require('socket.io')(server,{
 
 
 let users = []
-const hostdir = process.env.NODE_ENV === 'production' ? 'https://airdropserver.herokuapp.com' : 'http://192.168.1.36:5588'
+const hostdir = process.env.NODE_ENV === 'production' ? 'https://airdropserver.herokuapp.com' : 'http://192.168.1.36:5589'
 
 
 app.use(cors());
