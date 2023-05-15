@@ -16,7 +16,7 @@ const io = require("socket.io")(server, {
 let users = [];
 const hostdir =
   process.env.NODE_ENV === "production"
-    ? "https://airdropserver.up.railway.app/"
+    ? "https://airshare-server.onrender.com/"
     : "http://192.168.1.36:5589";
 
 app.use(cors());
